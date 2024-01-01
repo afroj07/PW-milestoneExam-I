@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #moving-image {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="moving-image"><img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="image"></div>
+
+<script>
+    const image = document.getElementById("moving-image");
+    let positionX = 50;
+    let positionY = 50;
+    const step = 10;
+
+    document.addEventListener("keydown", function(event) {
+        handleKeyPress(event);
+    });
+
+    function handleKeyPress(event) {
+        switch (event.key) {
+            case "ArrowUp":
+                moveImage(0, -step);
+                break;
+            case "ArrowDown":
+                moveImage(0, step);
+                break;
+            case "ArrowLeft":
+                moveImage(-step, 0);
+                break;
+            case "ArrowRight":
+                moveImage(step, 0);
+                break;
+        }
+    }
+
+    function moveImage(deltaX, deltaY) {
+        positionX += deltaX;
+        positionY += deltaY;
+        image.style.left = positionX + "px";
+        image.style.top = positionY + "px";
+    }
+</script>
+
+</body>
+</html>

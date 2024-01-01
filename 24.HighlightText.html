@@ -1,0 +1,65 @@
+<!-- 
+Text Highlighting
+Using the Document Object Model (DOM), highlight all words in a paragraph element that are greater than 8
+characters. The highlighted words should be with a yellow background color. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Highlighting</title>
+    <style>
+        .highlighted {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<p id="paragraph">
+    This is a sample paragraph with words of varying lengths. Some words are longer than 8 characters and should be highlighted.
+</p>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        highlightWords();
+    });
+
+    function highlightWords() {
+        // Get the paragraph element
+        const paragraph = document.getElementById("paragraph");
+
+        // Get the text content of the paragraph
+        const textContent = paragraph.textContent;
+
+        // Split the text into an array of words
+        const words = textContent.split(/\s+/);
+
+        // Clear the content of the paragraph
+        paragraph.innerHTML = '';
+
+        // Iterate through the words and highlight those with more than 8 characters
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
+            if (word.length > 8) {
+                // Create a span element for the highlighted word
+                const span = document.createElement("span");
+                span.textContent = word;
+                span.classList.add("highlighted");
+
+                // Append the highlighted span to the paragraph
+                paragraph.appendChild(span);
+            } else {
+                // Create a text node for non-highlighted words
+                const textNode = document.createTextNode(word + ' ');
+
+                // Append the text node to the paragraph
+                paragraph.appendChild(textNode);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

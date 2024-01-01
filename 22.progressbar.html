@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            height: 2000px; /* Ensure there's enough content to scroll */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            transition: width 0.3s;
+        }
+ .main{
+    width: 70%;
+    margin: 10% ;
+   text-align: center;
+    background-color: rgb(105, 150, 187);
+}
+#todo-input, #todo-date{
+      padding: 5px;
+      margin: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: larger;
+      letter-spacing: 0.5px;
+}
+
+    </style>
+</head>
+<body>
+
+<div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
+<!-- Your page content goes here -->  
+    <div class="main"> 
+        <input id="todo-input" type="text" placeholder="Enter ToDo here">
+        <input id="todo-date" type="date">
+        <button id="add-btn" onclick="addToDo();">Add</button>
+
+    </div>
+
+<script>
+    document.addEventListener("scroll", function() {
+        updateProgressBar();
+    });
+
+    function updateProgressBar() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    }
+</script>
+
+</body>
+</html>
